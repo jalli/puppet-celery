@@ -1,7 +1,6 @@
 class celery::mq($user="some_user",
                        $vhost="some_vhost",
                        $password="CHANGEME") {
-  class { 'pip': }
 
   class { 'rabbitmq::repo::apt':
     before => Class['rabbitmq']
