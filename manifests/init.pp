@@ -1,4 +1,4 @@
-class celery::rabbitmq($user="some_user",
+class celery::mq($user="some_user",
                        $vhost="some_vhost",
                        $password="CHANGEME") {
   class { 'pip': }
