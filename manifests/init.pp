@@ -5,7 +5,7 @@ class celery::rabbitmq($user="some_user",
 
   class { 'rabbitmq::repo::apt':
     pin    => 900,
-    before => Class['rabbitmq::server']
+    before => Class['rabbitmq']
   }
 
   class { 'rabbitmq':
