@@ -1,8 +1,7 @@
-
-
 class celery::rabbitmq($user="some_user",
                        $vhost="some_vhost",
                        $password="CHANGEME") {
+  class { 'pip': }
 
   class { 'rabbitmq::repo::apt':
     pin    => 900,
@@ -50,7 +49,7 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
 
   pip::install {"celery":
     requirements => $requirements,
-    require => [Exec["pip::bootstrapped"], File[$requirements],],
+    require => [Package["pip"], File[$requirements],],
   }
 
   file { "/etc/default/celeryd":
@@ -119,7 +118,6 @@ class celery::django($requirements="/tmp/celery-django-requirements.txt",
 
   pip::install {"celery":
     requirements => $requirements,
-    require => [Exec["pip::bootstrapped"], File[$requirements],],
+    require => [Package["pip"], File[$requirements],],
   }
-
 }
