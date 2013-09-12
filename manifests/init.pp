@@ -8,7 +8,7 @@ class celery::rabbitmq($user="some_user",
     before => Class['rabbitmq::server']
   }
 
-  class { 'rabbitmq::server':
+  class { 'rabbitmq':
     delete_guest_user => true,
   }
 
