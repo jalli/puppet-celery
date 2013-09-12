@@ -24,12 +24,12 @@ Bootstrapping RabbitMQ
 If you need to bootstrap RabbitMQ (note that this requires that you have
 `this version`_ of `puppetlabs-rabbitmq`_ to run on RabbitMQ 2.6)::
 
-    class { "celery::rabbitmq": }
+    class { "celery::mq": }
 
 You should provide a ``user``, ``vhost``, and ``password`` along these
 lines::
 
-    class { "celery::rabbitmq":
+    class { "celery::mq":
       $user => "myuser",
       $vhost => "myvhost",
       $password => "secret",
@@ -48,7 +48,7 @@ You create a celery server with the ``celery::server`` class like this::
 If you're relying on the RabbitMQ bootstrap, you would set it up like this::
 
     class { "celery::server":
-      require => Class["celery::rabbitmq"],
+      require => Class["celery::mq"],
     }
 
 Configuration
