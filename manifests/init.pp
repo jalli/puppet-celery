@@ -47,7 +47,7 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
 
   pip::install {"celery":
     requirements => $requirements,
-    require => [Package["pip"], File[$requirements],],
+    require => [Package["python-pip"], File[$requirements],],
   }
 
   file { "/etc/default/celeryd":
