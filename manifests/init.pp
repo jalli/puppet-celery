@@ -1,6 +1,6 @@
 class celery::mq($user="some_user",
-                       $vhost="some_vhost",
-                       $password="CHANGEME") {
+                 $vhost="some_vhost",
+                 $password="CHANGEME") {
 
   class { 'rabbitmq::repo::apt':
     before => Class['rabbitmq']
