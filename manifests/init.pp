@@ -73,6 +73,7 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
 
   file { "/var/celery/celeryconfig.py":
     ensure => "present",
+    replace => false, # If config file exists we don't replace it
     content => template($config_template),
     require => File["/var/celery"],
   }
