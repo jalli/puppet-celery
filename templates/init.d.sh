@@ -190,7 +190,8 @@ case "$1" in
     ;;
 
     status)
-        celeryctl status
+        cd "/var/celery" && celeryctl status
+        cd "$OLDPW"
     ;;
 
     restart)
