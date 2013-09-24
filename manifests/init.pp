@@ -18,7 +18,6 @@ class celery::mq($user="some_user",
       }
   }
 
-  }
   rabbitmq_user { $user:
     admin => true,
     password => $password,
@@ -82,10 +81,7 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
 
   file { "/var/celery/celeryconfig.py":
     ensure => "present",
-    replace = $force ? {
-      'true'=> true, # Replace if force is set
-      'false' => false, # Otherwise preserve existing
-      }
+    replace => $force, # Only replace if force is set
     content => template($config_template),
     require => File["/var/celery"],
   }
