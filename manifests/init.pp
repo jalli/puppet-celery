@@ -1,5 +1,5 @@
 class celery::mq($user="some_user",
-                 $vhost="some_vhost",
+                 $vhost=$fqdn,
                  $password="CHANGEME") {
 
   class { 'rabbitmq::repo::apt':
@@ -10,22 +10,22 @@ class celery::mq($user="some_user",
     delete_guest_user => true,
   }
 
-  rabbitmq_user { "$user":
+  rabbitmq_user { $user:
     admin    => true,
     password => $password,
-    provider => 'rabbitmqctl',
+    #provider => 'rabbitmqctl',
   }
 
   rabbitmq_vhost { $vhost:
     ensure => present,
-    provider => 'rabbitmqctl',
+    #provider => 'rabbitmqctl',
   }
 
-  rabbitmq_user_permissions { "$user@$vhost":
+  rabbitmq_user_permissions { "${user}@${vhost}":
     configure_permission => '.*',
     read_permission      => '.*',
     write_permission     => '.*',
-    provider => 'rabbitmqctl',
+    #    provider => 'rabbitmqctl',
   }
 }
 
