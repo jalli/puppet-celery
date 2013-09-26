@@ -1,7 +1,6 @@
 class celery::mq($user="some_user",
                  $vhost=$fqdn,
-                 $password="CHANGEME",
-                 $force='false') {
+                 $password="CHANGEME") {
 
   class { 'rabbitmq::repo::apt':
     before => Class['rabbitmq']
@@ -11,29 +10,19 @@ class celery::mq($user="some_user",
     delete_guest_user => true,
   }
 
-  # Force deletes existing config/users and re-creates
-  if $force == 'true' {
-      rabbitmq_user { $user:
-        ensure => absent,
-      }
-  }
-
   rabbitmq_user { $user:
     admin => true,
     password => $password,
-    #provider => 'rabbitmqctl',
   }
 
   rabbitmq_vhost { $vhost:
     ensure => present,
-    #provider => 'rabbitmqctl',
   }
 
   rabbitmq_user_permissions { "${user}@${vhost}":
     configure_permission => '.*',
     read_permission      => '.*',
     write_permission     => '.*',
-    #    provider => 'rabbitmqctl',
   }
 }
 
@@ -81,7 +70,6 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
 
   file { "/var/celery/celeryconfig.py":
     ensure => "present",
-    replace => $force, # Only replace if force is set
     content => template($config_template),
     require => File["/var/celery"],
   }
