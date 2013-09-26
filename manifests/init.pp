@@ -72,6 +72,7 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
     ensure => "present",
     content => template($config_template),
     require => File["/var/celery"],
+    replace => false, # Current rabbitmq does not validate user, workarround so that password never gets ovewritten
   }
 
   file { "/var/log/celery":
