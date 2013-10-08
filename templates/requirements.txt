@@ -1,5 +1,5 @@
 amqplib>=1.0.0
-anyjson>=0.3.1
+anyjson>=0.3.3
 celery>=3.0.23
 kombu>=2.5.14,<3.0
 pyparsing>=1.5.6
