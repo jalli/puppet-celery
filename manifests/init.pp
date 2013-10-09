@@ -41,7 +41,8 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
     ensure => "present",
     content => template($requirements_template),
   }
-
+  # Consider dropping this implementation of pip and move to python::pip
+  # instead, it's a better implementation
   pip::install {"celery":
     requirements => $requirements,
     require => [Package["python-pip"], File[$requirements],],
