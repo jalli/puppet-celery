@@ -2,10 +2,6 @@ class celery::mq($user="some_user",
                  $vhost=$fqdn,
                  $password="CHANGEME") {
 
-  class { 'rabbitmq::repo::apt':
-    before => Class['rabbitmq']
-  }
-
   class { 'rabbitmq':
     delete_guest_user => true,
   }
