@@ -38,9 +38,9 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
     content => template($requirements_template),
   }
 
+  python::requirements { $requirements: }
   python::pip {"celery":
-    requirements => $requirements,
-    require => [Package["python-pip"], File[$requirements],],
+    require => [Package["python-pip"], Python::Requirements[$requirements]],
   }
 
   file { "/etc/default/celeryd":
@@ -108,8 +108,8 @@ class celery::django($requirements="/tmp/celery-django-requirements.txt",
     content => template($requirements_template),
   }
 
+  python::requirements { $requirements: }
   python::pip {"celery":
-    requirements => $requirements,
-    require => [Package["pip"], File[$requirements],],
+    require => [Package["pip"], Python::Requirements[$requirements]],
   }
 }
