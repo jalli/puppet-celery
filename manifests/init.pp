@@ -37,9 +37,8 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
     ensure => "present",
     content => template($requirements_template),
   }
-  # Consider dropping this implementation of pip and move to python::pip
-  # instead, it's a better implementation
-  pip::install {"celery":
+
+  python::pip {"celery":
     requirements => $requirements,
     require => [Package["python-pip"], File[$requirements],],
   }
@@ -86,7 +85,7 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
     ensure => "running",
     require => [File["/var/celery/celeryconfig.py"],
                 File["/etc/init.d/celeryd"],
-                Exec["pip-celery"],
+                Exec["pip_install_celery"],
                 File["/var/log/celery"],
                 File["/var/run/celery"],
                 Class["rabbitmq::service"], ],
@@ -109,7 +108,7 @@ class celery::django($requirements="/tmp/celery-django-requirements.txt",
     content => template($requirements_template),
   }
 
-  pip::install {"celery":
+  python::pip {"celery":
     requirements => $requirements,
     require => [Package["pip"], File[$requirements],],
   }
