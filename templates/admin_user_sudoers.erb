@@ -5,6 +5,8 @@
 Cmnd_Alias CELERYD_MULTI = <%= @celeryd_multi_binary %>
 Cmnd_Alias CELERY = <%= @celery_binary %>
 
+Runas_Alias CELERY_USER = <%= @broker_user %>
+
 # User privilege specification
-<%= @admin_user %>  ALL=CELERYD_MULTI, NOPASSWD: CELERYD_MULTI
-<%= @admin_user %>  ALL=CELERY, NOPASSWD: CELERY
+<%= @admin_user %>  ALL=(CELERY_USER)NOPASSWD: CELERYD_MULTI
+<%= @admin_user %>  ALL=(CELERY_USER)NOPASSWD: CELERY
