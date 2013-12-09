@@ -1,8 +1,15 @@
+class celeryd(
+    $celeryd_multi_binary ="/usr/local/bin/celeryd-multi",
+    $celery_binary="/usr/local&/bin/celery"
+             ) {
+    include sddlib
+}
+
 class celery::mq($user="some_user",
                  $vhost=$fqdn,
                  $password="CHANGEME") {
   include stdlib
-  # Load python module with virtualenv support and python dev env                  
+  # Load python module with virtualenv support and python dev env
   ensure_resource('class', 'python', {'version' => 'system', 'dev' => true, 'virtualenv' => true, 'pip' => true })
 
   class { 'rabbitmq':

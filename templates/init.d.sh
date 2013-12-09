@@ -149,12 +149,12 @@ export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
 
 
 stop_workers () {
-    $CELERYD_MULTI stop $CELERYD_NODES --pidfile="$CELERYD_PID_FILE"
+    sudo $CELERYD_MULTI stop $CELERYD_NODES --pidfile="$CELERYD_PID_FILE"
 }
 
 
 start_workers () {
-    $CELERYD_MULTI start $CELERYD_NODES $DAEMON_OPTS        \
+    sudo $CELERYD_MULTI start $CELERYD_NODES $DAEMON_OPTS        \
                          --pidfile="$CELERYD_PID_FILE"      \
                          --logfile="$CELERYD_LOG_FILE"      \
                          --loglevel="$CELERYD_LOG_LEVEL"    \
@@ -164,7 +164,7 @@ start_workers () {
 
 
 restart_workers () {
-    $CELERYD_MULTI restart $CELERYD_NODES $DAEMON_OPTS      \
+    sudo $CELERYD_MULTI restart $CELERYD_NODES $DAEMON_OPTS      \
                            --pidfile="$CELERYD_PID_FILE"    \
                            --logfile="$CELERYD_LOG_FILE"    \
                            --loglevel="$CELERYD_LOG_LEVEL"  \
