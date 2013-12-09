@@ -5,9 +5,6 @@
 Cmnd_Alias CELERYD_MULTI = <%= @celeryd_multi_binary %>
 Cmnd_Alias CELERY = <%= @celery_binary %>
 
-#/usr/local/bin/celeryd-multi
-#/usr/local/bin/celery
-
 # User privilege specification
 <%= @admin_user %>  ALL=CELERYD_MULTI, NOPASSWD: CELERYD_MULTI
 <%= @admin_user %>  ALL=CELERY, NOPASSWD: CELERY

@@ -2,12 +2,9 @@
 # Allow admin users to stop/start celery service without password
 
 # Cmnd alias specification
-Cmnd_Alias CELERYD_MULTI = <%= @celeryd_multi_binary %>
-Cmnd_Alias CELERY = <%= @celery_binary %>
-
-#/usr/local/bin/celeryd-multi
-#/usr/local/bin/celery
+Cmnd_Alias AG_CELERYD_MULTI = <%= @celeryd_multi_binary %>
+Cmnd_Alias AG_CELERY = <%= @celery_binary %>
 
 # Group privilege specification
-%<%= @admin_group %>  ALL=CELERYD_MULTI, NOPASSWD: CELERYD_MULTI
-%<%= @admin_group %>  ALL=CELERY, NOPASSWD: CELERY
+%<%= @admin_group %>  ALL=AG_CELERYD_MULTI, NOPASSWD: AG_CELERYD_MULTI
+%<%= @admin_group %>  ALL=AG_CELERY, NOPASSWD: AG_CELERY
