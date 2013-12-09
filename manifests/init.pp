@@ -1,4 +1,4 @@
-class celeryd(
+class celery(
     $celeryd_multi_binary ="/usr/local/bin/celeryd-multi",
     $celery_binary="/usr/local&/bin/celery"
              ) {
