@@ -39,7 +39,7 @@ class celery::beat($initd_template="celery/celery-init.erb"){
   }
   service { "celery-beat":
     ensure => "running",
-    require => [Class[celery::server],
+    require => [Class['celery::server'],
                 Service['celeryd'], ],
   }
 }
