@@ -78,12 +78,20 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
 
   user { "celery":
     ensure => "present",
+    system => true,
+    gid => "celery",
+    require => Group['celery'],
+  }
+
+  group { "celery":
+    ensure => "present",
+    system => true,
   }
 
   file { "/var/celery":
     ensure => "directory",
     owner => "celery",
-    require => User["celery"],
+    group => "celery",
   }
 
   file { "/var/celery/celeryconfig.py":
@@ -91,16 +99,21 @@ class celery::server($requirements="/tmp/celery-requirements.txt",
     content => template($config_template),
     require => File["/var/celery"],
     replace => false, # Current rabbitmq does not validate user, workarround so that password never gets ovewritten
+    owner => "celery",
+    group => "celery",
+    mode => "0660",
   }
 
   file { "/var/log/celery":
     ensure => "directory",
     owner => "celery",
+    group => "celery",
   }
 
   file { "/var/run/celery":
     ensure => "directory",
     owner => "celery",
+    group => "celery",
   }
 
   service { "celeryd":
