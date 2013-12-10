@@ -143,7 +143,7 @@ wait_pid () {
     forever=1
     i=0
     while [ $forever -gt 0 ]; do
-        kill -0 $pid 1>/dev/null 2>&1
+        sudo kill -0 $pid 1>/dev/null 2>&1
         if [ $? -eq 1 ]; then
             echo "OK"
             forever=0
@@ -164,7 +164,7 @@ wait_pid () {
 stop_beat () {
     echo -n "Stopping ${SCRIPT_NAME}... "
     if [ -f "$CELERYBEAT_PID_FILE" ]; then
-        sudo wait_pid $(cat "$CELERYBEAT_PID_FILE")
+        wait_pid $(cat "$CELERYBEAT_PID_FILE")
     else
         echo "NOT RUNNING"
     fi

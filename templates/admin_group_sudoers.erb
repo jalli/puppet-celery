@@ -4,11 +4,11 @@
 # Cmnd alias specification
 Cmnd_Alias AG_CELERYD_MULTI = <%= @celeryd_multi_binary %>
 Cmnd_Alias AG_CELERY = <%= @celery_binary %>
+Cmnd_Alias AG_KILL = /bin/kill
 
 Runas_Alias AG_CELERY_USER = <%= @broker_user %>
 
 # Group privilege specification
 %<%= @admin_group %>  ALL=(root)NOPASSWD: AG_CELERYD_MULTI
 %<%= @admin_group %>  ALL=(root)NOPASSWD: AG_CELERY
-#%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_CELERYD_MULTI
-#%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_CELERY
+%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_KILL

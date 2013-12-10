@@ -72,7 +72,7 @@ check_dev_null() {
 export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
 
 stop_workers () {
-    sudo -u <%= @broker_user %> $CELERYD_MULTI stop $CELERYD_NODES --pidfile="$CELERYD_PID_FILE"
+    sudo $CELERYD_MULTI stop $CELERYD_NODES --pidfile="$CELERYD_PID_FILE"
     #sudo -u <%= @broker_user %> $CELERYD_MULTI stop $CELERYD_NODES --pidfile="$CELERYD_PID_FILE"
 }
 
