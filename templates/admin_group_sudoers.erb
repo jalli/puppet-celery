@@ -8,5 +8,7 @@ Cmnd_Alias AG_CELERY = <%= @celery_binary %>
 Runas_Alias CELERY_USER = <%= @broker_user %>
 
 # Group privilege specification
-%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_CELERYD_MULTI
-%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_CELERY
+%<%= @admin_group %>  ALL=(root)NOPASSWD: AG_CELERYD_MULTI
+%<%= @admin_group %>  ALL=(root)NOPASSWD: AG_CELERY
+#%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_CELERYD_MULTI
+#%<%= @admin_group %>  ALL=(AG_CELERY_USER)NOPASSWD: AG_CELERY
