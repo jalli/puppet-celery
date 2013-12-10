@@ -25,6 +25,10 @@ CELERYD_PID_FILE="/var/run/celery/%n.pid"
 CELERYD_USER="celery"
 CELERYD_GROUP="celery"
 
+# Scheduler should run as an unprivileged user.
+CELERYBEAT_USER="celery"
+CELERYBEAT_GROUP="celery"
+
 # If enabled pid and log directories will be created if missing,
 # and owned by the userid/group configured.
 #CELERY_CREATE_DIRS=1
