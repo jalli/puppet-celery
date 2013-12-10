@@ -1,5 +1,1 @@
-BROKER_HOST = "<%= @broker_host %>"
-BROKER_PORT = <%= @broker_port %>
-BROKER_USER = "<%= @broker_user %>"
-BROKER_PASSWORD = "<%= @broker_password %>"
-BROKER_VHOST = "<%= @broker_vhost %>"
+BROKER_URL = 'amqp://<%= @broker_user %>:<%= @broker_password %>@<%= @broker_host %>:<%= @broker_port %>/<%= @broker_vhost %>'
