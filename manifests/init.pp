@@ -31,11 +31,24 @@ class celery::mq($user="some_user",
   }
 }
 
+class celery::beat($initd_template="celery/celery-init.erb"){
+  file { "/etc/init.d/celery-beat":
+    ensure => "present",
+    content => template($initd_template),
+    mode => "0755",
+  }
+  service { "celery-beat":
+    ensure => "running",
+    require => [Class[celery::server],
+                Service['celeryd'], ],
+  }
+}
+
 class celery::server($requirements="/tmp/celery-requirements.txt",
                      $requirements_template="celery/requirements.txt",
-                     $initd_template="celery/init.d.sh.erb",
+                     $initd_template="celery/celery-init.erb"
                      $config_template="celery/celeryconfig.py",
-                     $defaults_template="celery/defaults.sh",
+                     $defaults_template="celery/defaults.erb",
                      $broker_user="some_user",
                      $broker_vhost="some_vhost",
                      $broker_password="CHANGEME",
