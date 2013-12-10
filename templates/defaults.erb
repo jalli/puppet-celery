@@ -4,6 +4,10 @@ CELERYD_NODES="w1"
 # or we could have three nodes:
 #CELERYD_NODES="w1 w2 w3"
 
+# Absolute or relative path to the 'celery' command:
+CELERY_BIN="/usr/local/bin/celery"
+#CELERY_BIN="/virtualenvs/def/bin/celery"
+
 # Where to chdir at start.
 CELERYD_CHDIR="/var/celery/"
 
@@ -20,3 +24,10 @@ CELERYD_PID_FILE="/var/run/celery/%n.pid"
 # Workers should run as an unprivileged user.
 CELERYD_USER="celery"
 CELERYD_GROUP="celery"
+
+# If enabled pid and log directories will be created if missing,
+# and owned by the userid/group configured.
+#CELERY_CREATE_DIRS=1
+
+# Extra arguments to celerybeat
+CELERYBEAT_OPTS="--schedule=/var/run/celerybeat-schedule"
