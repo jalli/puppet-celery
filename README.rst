@@ -86,4 +86,5 @@ configuration similar to::
 .. _puppet: http://puppetlabs.com/
 .. _puppet-pip: https://github.com/armstrong/puppet-pip
 .. _puppetlabs-rabbitmq: https://github.com/puppetlabs/puppetlabs-rabbitmq/
-.. _this version: https://github.com/puppetlabs/puppetlabs-rabbitmq/pull/8
+.. _this version: https://github.com/jalli/puppet-celery 
+.. _forked from: https://github.com/armstrong/puppet-celery
